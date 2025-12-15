@@ -1,0 +1,35 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Project {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  tech        String // podemos guardar "React,Node.js,NestJS"
+  link        String?
+  createdAt   DateTime @default(now())
+}
+
+model Experience {
+  id          Int      @id @default(autoincrement())
+  company     String
+  role        String
+  period      String
+  description String
+  tech        String
+  createdAt   DateTime @default(now())
+}
+
+model ContactMessage {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  message   String
+  createdAt DateTime @default(now())
+}
