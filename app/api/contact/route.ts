@@ -1,26 +1,17 @@
 import { NextResponse } from "next/server";
-import { prisma } from "@/lib/prisma";
 
 export async function POST(request: Request) {
-  try {
-    const body = await request.json();
-    const { name, email, message } = body;
+  const body = await request.json().catch(() => null);
 
-    if (!name || !email || !message) {
-      return NextResponse.json(
-        { error: "name, email y message son obligatorios" },
-        { status: 400 }
-      );
-    }
-
-    await prisma.contactMessage.create({
-      data: { name, email, message },
-    });
-
-    // Aquí podrías disparar un email, Slack, etc.
-    return NextResponse.json({ ok: true });
-  } catch (error) {
-    console.error("Error POST /api/contact", error);
-    return new NextResponse("Internal Server Error", { status: 500 });
+  if (!body?.name || !body?.email || !body?.message) {
+    return NextResponse.json(
+      { error: "name, email y message son obligatorios" },
+      { status: 400 }
+    );
   }
+
+  return NextResponse.json({
+    ok: true,
+    message: "Mensaje recibido. Configura aquí el envío por email o almacenamiento si lo necesitas.",
+  });
 }

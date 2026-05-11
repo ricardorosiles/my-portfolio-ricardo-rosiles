@@ -2,6 +2,7 @@ import { Navbar } from "./components/Navbar";
 import { Hero } from "./components/Hero";
 import { ExperienceSection } from "./components/ExperienceSection";
 import { ProjectsSection } from "./components/ProjectsSection";
+import { SkillsSection } from "./components/SkillsSection";
 import { ContactForm } from "./components/ContactForm";
 import { Footer } from "./components/Footer";
 
@@ -9,41 +10,53 @@ export default function Home() {
   return (
     <>
       <Navbar />
-
       <main>
-        <div className="container">
-          <Hero />
+        <Hero />
 
-          <section id="experience" className="section">
-            <h2 className="section-title">Experiencia</h2>
+        <section id="experience" className="section container">
+          <div className="section-heading">
+            <p className="section-kicker">Trayectoria</p>
+            <h2 className="section-title">Experiencia laboral</h2>
             <p className="section-subtitle">
-              Algunos de los roles más relevantes en los que he trabajado,
-              construyendo productos reales y manejando entornos de producción.
+              Experiencia construyendo productos reales, integraciones empresariales, PWAs, microservicios y soluciones cloud.
             </p>
-            <ExperienceSection />
-          </section>
+          </div>
+          <ExperienceSection />
+        </section>
 
-          <section id="projects" className="section">
-            <h2 className="section-title">Proyectos</h2>
+        <section id="skills" className="section container">
+          <div className="section-heading">
+            <p className="section-kicker">Tech stack</p>
+            <h2 className="section-title">Skills con enfoque full stack</h2>
             <p className="section-subtitle">
-              Proyectos SaaS, APIs y plataformas que he desarrollado usando
-              arquitectura limpia, NestJS, React, PostgreSQL, MongoDB y AWS.
+              Tecnologías que uso para diseñar, construir, desplegar y mantener soluciones modernas y escalables.
             </p>
-            <ProjectsSection />
-          </section>
+          </div>
+          <SkillsSection />
+        </section>
 
-          <section id="contact" className="section">
-            <h2 className="section-title">Contacto</h2>
+        <section id="projects" className="section container">
+          <div className="section-heading">
+            <p className="section-kicker">Casos destacados</p>
+            <h2 className="section-title">Proyectos relevantes</h2>
             <p className="section-subtitle">
-              ¿Buscas a alguien que pueda diseñar la arquitectura, desarrollar
-              el backend, el frontend y desplegar en la nube? Escríbeme y lo
-              platicamos.
+              Selección de proyectos basados en automatización, aplicaciones empresariales, salud, retail, IA y plataformas digitales.
             </p>
-            <ContactForm />
-          </section>
-        </div>
+          </div>
+          <ProjectsSection />
+        </section>
+
+        <section id="contact" className="section container">
+          <div className="section-heading">
+            <p className="section-kicker">Contacto</p>
+            <h2 className="section-title">Trabajemos juntos</h2>
+            <p className="section-subtitle">
+              Disponible para colaborar en proyectos full stack, backend, frontend, microservicios y cloud.
+            </p>
+          </div>
+          <ContactForm />
+        </section>
       </main>
-
       <Footer />
     </>
   );

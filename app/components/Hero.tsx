@@ -1,62 +1,57 @@
 "use client";
 
-import React from "react";
+import { profile, stats } from "../data/portfolio";
 
 export function Hero() {
   const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    el.scrollIntoView({ behavior: "smooth", block: "start" });
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
-    <section id="hero" className="section">
-      <div className="hero">
-        {/* LADO TEXTO */}
-        <div>
-          <p className="hero-text-eyebrow">DESARROLLADOR FULLSTACK · MÉXICO</p>
+    <section id="hero" className="hero-section">
+      <div className="hero-grid">
+        <div className="hero-copy">
+          <div className="availability-pill">
+            <span /> Disponible para proyectos Full Stack / Backend
+          </div>
+
+          <p className="hero-text-eyebrow">{profile.role} · {profile.location}</p>
           <h1 className="hero-title">
-            Hola, Soy <span>Ricardo Rosiles</span>
+            Construyo productos digitales <span>escalables, limpios y listos para producción.</span>
           </h1>
 
-          <p className="hero-role">
-            Desarrollador Full Stack · Node.js · NestJS · React · AWS · SaaS
-          </p>
-
-          <p className="hero-description">
-            Desarrollador con +5 años de experiencia construyendo APIs,
-            microservicios y productos SaaS para sectores como salud, finanzas e
-            inmobiliario. Especializado en arquitectura limpia, NestJS,
-            PostgreSQL, MongoDB y despliegues en AWS / GCP.
-          </p>
+          <p className="hero-description">{profile.summary}</p>
 
           <div className="hero-actions">
-            <button
-              className="btn-primary"
-              onClick={() => scrollTo("projects")}
-            >
-              Ver proyectos destacados
-            </button>
+            <button className="btn-primary" onClick={() => scrollTo("projects")}>Ver proyectos</button>
+            <a className="btn-secondary" href={`mailto:${profile.email}`}>Contactarme</a>
+          </div>
 
-            <button
-              className="btn-secondary"
-              onClick={() => scrollTo("contact")}
-            >
-              Hablemos de un proyecto
-            </button>
+          <div className="hero-socials">
+            <a href={profile.github} target="_blank" rel="noreferrer">GitHub</a>
+            <a href={profile.portfolio} target="_blank" rel="noreferrer">Portfolio actual</a>
+            <a href={`https://wa.me/5215515017945`} target="_blank" rel="noreferrer">WhatsApp</a>
           </div>
         </div>
 
-        {/* LADO AVATAR */}
-        <div className="hero-avatar-wrapper">
-          <div className="hero-avatar">
-            <div className="hero-avatar-inner">
-              <div className="hero-avatar-initials">RR</div>
-              <div className="hero-avatar-tag">Full Stack / Cloud</div>
+        <aside className="hero-panel" aria-label="Resumen profesional">
+          <div className="hero-avatar-card">
+            <div className="avatar-orbit">
+              <div className="avatar-core">RR</div>
             </div>
-            <span className="hero-avatar-dot" />
+            <h2>{profile.shortName}</h2>
+            <p>Full Stack · Microservicios · Cloud</p>
           </div>
-        </div>
+
+          <div className="stats-grid">
+            {stats.map((stat) => (
+              <div className="stat-card" key={stat.label}>
+                <strong>{stat.value}</strong>
+                <span>{stat.label}</span>
+              </div>
+            ))}
+          </div>
+        </aside>
       </div>
     </section>
   );
